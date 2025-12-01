@@ -2,67 +2,62 @@
 import React from 'react';
 
 const projects = [
-  { title: 'Farm2Home', desc: 'Connecting farmers and consumers for fresh produce.', year: 2025, link: '#' },
-  { title: 'Chatbot using NLP', desc: 'Smart chatbot for interactive communication.', year: 2025, link: '#' },
-  { title: 'Movie Recommendation System', desc: 'Suggests movies using collaborative filtering.', year: 2025, link: '#' },
-  { title: 'Spam/Ham Classification', desc: 'Detects spam emails using NLP.', year: 2025, link: '#' },
-  { title: 'MNIST Digit Classification', desc: 'Recognizes handwritten digits with neural nets.', year: 2025, link: '#' },
-  { title: 'Ovarian Cancer Detection', desc: 'Early detection using ML algorithms.', year: 'Ongoing', link: '#' }
+  {
+    title: 'Farm2Home - Farmer to Consumer Web Platform',
+    desc: 'Designed to connect farmers directly to consumers, enabling sale/delivery of fruits, vegetables, dairy, grains and more. Features include product listing, order placement, delivery tracking using HTML, CSS, JS, PHP & MySQL.',
+    link: '#'
+  },
+  {
+    title: 'Ovarian Cancer Detection using ML',
+    desc: 'An ML-based diagnostic system for early-stage detection using histopathological image datasets with feature extraction, model training & accuracy improvements.',
+    link: '#'
+  },
+  {
+    title: 'AgriRoute',
+    desc: 'Smart last-mile rural logistics platform for feed delivery using FastAPI & PostgreSQL. Includes K-Means clustering, COD tracking & OTP verification via Twilio.',
+    link: '#'
+  },
+  {
+    title: 'Chatbot using NLP',
+    desc: 'AI-powered chatbot using Python, Flask, NLTK with custom intents and a user-friendly UI for smooth natural language communication.',
+    link: '#'
+  },
+  {
+    title: 'Resume Screening Agent',
+    desc: 'AI-driven resume filter built using Streamlit + LangChain + OpenAI + ChromaDB. Generates job match score, identifies missing skills & ranks resumes.',
+    link: '#'
+  }
 ];
 
-const vibrantColors = ['#fce4ec', '#e3f2fd', '#e8f5e9', '#fff3e0', '#ede7f6', '#f9fbe7'];
+const vibrantColors = ['#ffebee','#e3f2fd','#fff8e1','#e8f5e9','#ede7f6'];
 
-const projectBoxStyle = (color) => ({
-  border: '1px solid #ccc',
-  borderRadius: '16px',
-  padding: '1.5rem',
-  backgroundColor: color,
-  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.1)',
-  textAlign: 'left',
-  width: '100%',
-  maxWidth: '320px',
-  margin: '1rem',
-  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-  cursor: 'pointer'
-});
+const Projects = () => (
+  <section id="projects" style={{ padding:'3rem',background:'linear-gradient(135deg,#e0f7fa,#f1f8e9)' }}>
+    <h2 style={{ textAlign:'center',fontSize:'2.5rem',marginBottom:'3rem',color:'#1a237e' }}>🚀 My Projects</h2>
 
-const projectBoxHoverStyle = {
-  transform: 'scale(1.05)',
-  boxShadow: '0 12px 24px rgba(0, 0, 0, 0.2)'
-};
+    <div style={{ display:'flex',flexWrap:'wrap',gap:'2rem',justifyContent:'center' }}>
+      {projects.map((p,i)=>(
+        <div key={i} 
+             style={{
+                background:vibrantColors[i%vibrantColors.length],
+                padding:'1.8rem',
+                borderRadius:'14px',
+                boxShadow:'0 8px 18px rgba(0,0,0,.15)',
+                width:'320px',
+                transition:'.3s',
+                cursor:'pointer'
+             }}
+             onMouseEnter={e=>e.currentTarget.style.transform='scale(1.06)'}
+             onMouseLeave={e=>e.currentTarget.style.transform='scale(1)'}>
 
-const gridContainerStyle = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-  gap: '2rem'
-};
-
-const Projects = () => {
-  const [hoverIndex, setHoverIndex] = React.useState(null);
-
-  return (
-    <section id="projects" style={{ padding: '3rem', background: 'linear-gradient(135deg, #e0f7fa 0%, #f1f8e9 100%)' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem', color: '#2e7d32' }}>🌟 My Projects</h2>
-      <div style={gridContainerStyle}>
-        {projects.map((p, idx) => (
-          <div
-            key={idx}
-            style={{
-              ...projectBoxStyle(vibrantColors[idx % vibrantColors.length]),
-              ...(hoverIndex === idx ? projectBoxHoverStyle : {})
-            }}
-            onMouseEnter={() => setHoverIndex(idx)}
-            onMouseLeave={() => setHoverIndex(null)}
-          >
-            <h3 style={{ color: '#1a237e', fontSize: '1.3rem', marginBottom: '0.5rem' }}>{p.title} ({p.year})</h3>
-            <p style={{ marginBottom: '1rem', color: '#37474f' }}>{p.desc}</p>
-            {p.link && <a href={p.link} target="_blank" rel="noopener noreferrer" style={{ color: '#0d47a1', textDecoration: 'none', fontWeight: 'bold' }}>🔗 View Project</a>}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
+          <h3 style={{color:'#0d47a1',fontSize:'1.3rem',fontWeight:'bold'}}>{p.title}</h3>
+          <p style={{margin:'10px 0',color:'#37474f'}}>{p.desc}</p>
+          <a href={p.link} target="_blank" rel="noreferrer"
+             style={{fontWeight:'bold',color:'#004d40',textDecoration:'none'}}>🔗 View Project</a>
+        </div>
+      ))}
+    </div>
+  </section>
+);
 
 export default Projects;
